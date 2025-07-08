@@ -54,18 +54,13 @@
     ctx.drawImage(birdImage, bird.x, bird.y, bird.width, bird.height);
   }
 
-  function drawPipes() {
-    pipes.forEach(pipe => {
-      // tubo superior (invertido)
-      ctx.save();
-      ctx.translate(pipe.x + pipeWidth / 2, pipe.top / 2);
-      ctx.scale(1, -1);
-      ctx.drawImage(pipeImage, -pipeWidth / 2, -pipe.top / 2, pipeWidth, pipe.top);
-      ctx.restore();
+ function drawPipes() {
+  ctx.fillStyle = "green";
+  pipes.forEach(pipe => {
+    ctx.fillRect(pipe.x, 0, pipeWidth, pipe.top);
+    ctx.fillRect(pipe.x, pipe.top + pipeGap, pipeWidth, canvas.height - pipe.top - pipeGap);
+  });
 
-      // tubo inferior (normal)
-      ctx.drawImage(pipeImage, pipe.x, pipe.top + pipeGap, pipeWidth, canvas.height - pipe.top - pipeGap);
-    });
   }
 
   function update() {
